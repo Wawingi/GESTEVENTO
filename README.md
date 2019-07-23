@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+# GESTEVENTO
+Sistema de Gestão de Eventos, onde são cadastrados os eventos e jutno com o seus convidados
+=======
+>>>>>>> Lançamento com requisição AJAX
 # Laravel 5.7 for Laravel Shift
 
 This repository contains the latest version of Laravel 5.7. It is used as a reference by [Laravel Shift - the automated way to upgrade Laravel applications](https://laravelshift.com).
@@ -34,3 +41,7 @@ Shifts for *PHP* include:
 - [PSR-2 - adopt the PSR-2 code style](https://laravelshift.com/upgrade-psr2-code-style-standard)
 - [PSR-4 - upgrade from PSR-0 to PSR-4](https://laravelshift.com/upgrade-namespace-psr0-psr4)
 - [Mysqli Shift - covert mysql to mysqli](https://laravelshift.com/upgrade-mysql-mysqli)
+<<<<<<< HEAD
+=======
+>>>>>>> Primeiro lançamento com crud de evento
+>>>>>>> Lançamento com requisição AJAX

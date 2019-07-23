@@ -5,6 +5,10 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
+<<<<<<< HEAD
+=======
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+>>>>>>> Lançamento com requisição AJAX
 
         <link rel="shortcut icon" href="{{ url('images/favicon.ico') }}">
 
@@ -40,6 +44,7 @@
             </footer>
         </div>
     </div>
+<<<<<<< HEAD
     <!-- END wrapper -->
     <script>
         var resizefunc = [];
@@ -49,6 +54,162 @@
     <script src="{{ url('js/modernizr.min.js') }}" type="text/javascript"></script>       
     <script src="{{ url('js/jquery.min.js') }}"></script>
     <script src="{{ url('js/popper.min.js') }}"></script><!-- Popper for Bootstrap -->
+=======
+    
+    
+    <!--<script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/jquery.js') }}"></script>-->
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        //Adicionar dados com AJAX
+        $(document).on('click','.create-modal', function() {
+            $('#criareventomodal').modal('show');
+            $('.form-horizontal').show();
+            $('.modal-title').text('Registar Evento');
+        });
+
+        $("#add").click(function() {
+            $.ajax({
+                type: 'POST',
+                url: 'inserir',
+                data: {
+                    '_token': $('input[name=_token]').val(),
+                    'tipo': $('select[name=tip]').val(),
+                    'entidade': $('input[name=entid]').val(),
+                    'local': $('input[name=loc]').val(),
+                    'data': $('input[name=dat]').val(),
+                    'hora': $('input[name=hor]').val()                    
+                },
+                success: function(data){
+                    if ((data.errors)) {    
+                        console.log('ERROR'); 
+                        $('.error').removeClass('hidden');
+                        $('.error').text(data.errors.tipo);
+                        $('.error').text(data.errors.entidade);
+                        $('.error').text(data.errors.local);
+                        $('.error').text(data.errors.data);
+                        $('.error').text(data.errors.hora);
+                    } else {
+                        $('.error').remove();
+                        $('#table').append("<tr class='post" + data.id + "'>"+
+                        "<td style='text-align: center'>" + data.id + "</td>"+
+                        "<td style='text-align: center'>" + data.tipo + "</td>"+
+                        "<td style='text-align: center'>" + data.entidade + "</td>"+
+                        "<td style='text-align: center'>" + data.local + "</td>"+
+                        "<td style='text-align: center'>" + data.data + "</td>"+
+                        "<td style='text-align: center'>" + data.hora + "</td>"+
+                        "<td style='text-align: center;word-spacing: 10px'>"+
+                        " <a href=''><span class='fa fa-eye'></span></a>"+
+                        " <a href='' class='edit-modal btn btn-warning btn-sm' data-id='" + data.id + "' data-tipo='" + data.tipo + "' data-entidade='" + data.entidade + "' data-local='" + data.local + "' data-data='" + data.data + "' data-hora='" + data.hora + "'><span class='fa fa-pencil-alt'></span></a>"+
+                        " <a href='' class='delete-modal btn btn-danger btn-sm' data-id='" + data.id + "' data-tipo='" + data.tipo + "' data-entidade='" + data.entidade + "' data-local='" + data.local + "' data-data='" + data.data + "' data-hora='" + data.hora + "'><span class='fa fa-trash'></span></a>"+
+                        "</td>"+
+                        "</tr>");
+                        //$('#criareventomodal').modal('hide');      
+                    }
+                },
+            });
+            $('#tipo').val('');
+            $('#entidade').val('');
+            $('#local').val('');
+            $('#data').val('');
+            $('#hora').val('');
+        });
+
+        // Editar dados com Ajax
+        $(document).on('click', '.edit-modal', function() {
+            $('#footer_action_button').text(" Editar");
+            $('#footer_action_button').addClass('fa-trash-alt');
+            $('#footer_action_button').removeClass('fa-trash-alt');
+            $('.actionBtn').addClass('btn-primary');
+            $('.actionBtn').removeClass('btn-danger');
+            $('.actionBtn').addClass('edit');
+            $('.modal-title').text('Editar Evento');
+            $('.deleteContent').hide();
+            $('.form-horizontal').show();
+            $('#id').val($(this).data('id'));
+            $('#tpo').val($(this).data('tipo'));
+            $('#ent').val($(this).data('entidade'));
+            $('#lcl').val($(this).data('local'));
+            $('#dt').val($(this).data('data'));
+            $('#hr').val($(this).data('hora'));
+            $('#modalEditar').modal('show');
+        });
+
+        $('.modal-footer').on('click', '.edit', function() {
+            $.ajax({
+                type: 'POST',
+                url: 'editarEvento',
+                data: {
+                    '_token': $('input[name=_token]').val(),
+                    'id': $("#id").val(),
+                    'tipo': $('#tpo').val(),
+                    'entidade': $('#ent').val(),
+                    'local': $('#lcl').val(),
+                    'data': $('#dt').val(),
+                    'hora': $('#hr').val()
+                },
+            success: function(data) {
+                $('.evento' + data.id).replaceWith(" "+
+                    "<tr class='post" + data.id + "'>"+
+                        "<td style='text-align: center'>" + data.id + "</td>"+
+                        "<td style='text-align: center'>" + data.tipo + "</td>"+
+                        "<td style='text-align: center'>" + data.entidade + "</td>"+
+                        "<td style='text-align: center'>" + data.local + "</td>"+
+                        "<td style='text-align: center'>" + data.data + "</td>"+
+                        "<td style='text-align: center'>" + data.hora + "</td>"+
+                        "<td style='text-align: center;word-spacing: 10px'>"+
+                        " <a href=''><span class='fa fa-eye'></span></a>"+
+                        " <a href='' class='edit-modal btn btn-warning btn-sm' data-id='" + data.id + "' data-tipo='" + data.tipo + "' data-entidade='" + data.entidade + "' data-local='" + data.local + "' data-data='" + data.data + "' data-hora='" + data.hora + "'><span class='fa fa-pencil-alt'></span></a>"+
+                        " <a href='' class='delete-modal btn btn-danger btn-sm' data-id='" + data.id + "' data-tipo='" + data.tipo + "' data-entidade='" + data.entidade + "' data-local='" + data.local + "' data-data='" + data.data + "' data-hora='" + data.hora + "'><span class='fa fa-trash'></span></a>"+
+                        "</td>"+
+                        "</tr>"); 
+                        $('#modalEditar').modal('hide'); 
+                }
+            });
+        });
+
+        // Apagar dados com AJAX
+        $(document).on('click', '.delete-modal', function() {
+            $('#footer_action_button').text(" Apagar");
+            $('#footer_action_button').removeClass('fa-trash-alt');
+            $('#footer_action_button').addClass('fa-trash-alt');
+            $('.actionBtn').removeClass('btn-success');
+            $('.actionBtn').addClass('btn-danger');
+            $('.actionBtn').addClass('delete');
+            $('.modal-title').text('Apagar Evento');
+            $('.id').text($(this).data('id'));
+            $('.deleteContent').show();
+            $('.form-horizontal').hide();
+            $('#modalEditar').modal('show');
+        });
+
+        $('.modal-footer').on('click', '.delete', function(){
+            $.ajax({
+                type: 'POST',
+                url: 'apagarEvento',
+                data: {
+                '_token': $('input[name=_token]').val(),
+                'id': $('.id').text()
+                },
+                success: function(data){
+                    $('.evento' + $('.id').text()).remove();
+                    //$('#modalEditar').modal('hide');   
+                }
+            });
+        });
+       
+    </script>  
+  
+    <script>
+        var resizefunc = [];
+    </script>
+    <!-- Plugins  -->  
+    <script src="{{ url('js/modernizr.min.js') }}" type="text/javascript"></script>       
+    <script src="{{ url('js/jquery.min.js') }}"></script>
+    <script src="{{ url('js/popper.min.js') }}"></script>
+>>>>>>> Lançamento com requisição AJAX
     <script src="{{ url('js/bootstrap.min.js') }}"></script>
     <script src="{{ url('js/detect.js') }}"></script>
     <script src="{{ url('js/fastclick.js') }}"></script>
