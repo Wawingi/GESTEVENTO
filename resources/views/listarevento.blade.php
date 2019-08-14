@@ -1,6 +1,6 @@
 @extends('home')
 @section('content')
-<div class="content-page">
+    <div class="content-page">
                 <!-- Start content -->
                 <div class="content">
                     <div class="container-fluid">
@@ -32,10 +32,8 @@
                                 <div class="card-box table-responsive">
                                     <!-- Importação da Modal Evento -->
                                     @include('modalevento')
-<<<<<<< HEAD
-                                    <h4 class="m-t-0 header-title"><button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modalevento"><i class='fa  fa-plus-square'></i> AD EVENTO</button></h4><hr><br>
+
                                     <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0" width="100%">
-=======
                                         <h4 class="m-t-0 header-title">
                                         <!--<button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modalevento">
                                             <i class='fa  fa-plus-square'></i> AD EVENTO
@@ -48,7 +46,6 @@
                                         
 
                                     <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
->>>>>>> Lançamento com requisição AJAX
                                         <thead>
                                         <tr>
                                             <th style="text-align: center">#</th>
@@ -60,26 +57,7 @@
                                             <th style="text-align: center">Opções</th>
                                         </tr>
                                         </thead>
-<<<<<<< HEAD
-                                        
-                                        <tbody>
-                                        <?php $id=1 ?>
-                                        @foreach($eventos as $evento)
-                                        <tr>
-                                            <td style="text-align: center">{{ $id++ }}</td>
-                                            <td style="text-align: center">{{ $evento->tipo }}</td>
-                                            <td style="text-align: center">{{ $evento->entidade }}</td>
-                                            <td style="text-align: center">{{ $evento->local }}</td>
-                                            <td style="text-align: center">{{ $evento->data }}</td>
-                                            <td style="text-align: center">{{ $evento->hora }}</td>                                            
-                                            <td style="text-align: center;word-spacing: 10px">        
-                                                <a href='{{ url("/ver/{$evento->id}") }}' data-original-title='Ver'><i class='fa fa-eye'></i></a>
-                                                <a href='{{ url("/editar/{$evento->id}") }}'><i class='fa fa-pencil-alt'></i></a>
-                                                <a href='{{ url("/eliminar/{$evento->id}") }}'><i class='fa fa-trash-alt'></i></a>
-                                            </td>
-                                        </tr>
-=======
-
+                                       
                                         <tbody>
                                         @foreach($eventos as $evento)
                                             <tr class="evento{{$evento->id}}">
@@ -95,7 +73,7 @@
                                                     <a href="#" class="delete-modal btn btn-danger btn-sm" data-id="{{$evento->id}}" data-tipo="{{$evento->tipo}}" data-entidade="{{$evento->entidade}}" data-local="{{$evento->local}}" data-data="{{$evento->data}}" data-hora="{{$evento->hora}}"><i class='fa fa-trash-alt'></i></a>
                                                 </td>
                                             </tr>
->>>>>>> Lançamento com requisição AJAX
+
                                         @endforeach
                                         </tbody>
                                     </table>
@@ -103,19 +81,11 @@
                                 </div>
                             </div>
                         </div>
-<<<<<<< HEAD
-
-
-=======
->>>>>>> Lançamento com requisição AJAX
                     </div>
                     <!-- end row -->
                 </div>
                 <!-- end container -->
-            </div>
-<<<<<<< HEAD
-@stop
-=======
+    </div>
 
             {{-- Formulario Modal Criar Evento --}}
             <div id="criareventomodal" class="modal fade" role="dialog">
@@ -251,5 +221,5 @@
                     </div>
                 </div>
             </div>
-@endsection
->>>>>>> Lançamento com requisição AJAX
+            
+@stop

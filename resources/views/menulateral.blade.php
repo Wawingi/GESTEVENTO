@@ -14,7 +14,7 @@
                                         <a href="javascript:void(0);" class="waves-effect waves-primary"><i class="fas fa-cogs"></i> <span> Administração </span>
                                             <span class="menu-arrow"></span></a>
                                             <ul class="list-unstyled">
-                                                <li><a href="{{ url('inserir') }}">Registar Convidado</a></li>
+                                                <li><a href="{{ url('inserir') }}">Registar Evento</a></li>
                                                 <li><a href="{{ url('listar') }}">Listar Convidados</a></li>                                                              
                                             </ul>
                                 </li>

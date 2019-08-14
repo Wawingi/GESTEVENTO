@@ -11,13 +11,10 @@
 |
 */
 
-
-
 Route::get('/', function () {
     return view('dashboard');
 });
 
-<<<<<<< HEAD
 Route::get('/inserir',function(){
     return view('inserirevento');
 });
@@ -31,11 +28,11 @@ Route::get('/ver/{id}','EventoController@ver');
 
 
 //Route::resource('evento','EventoController');
-=======
 Route::get('inserir',function(){
     return view('inserirevento');
 });
 
+//Rotas para AJAX
 Route::get('listar','EventoController@listar');
 Route::post('inserir','EventoController@inserir');
 Route::resource('evento','EventoController');
@@ -47,5 +44,14 @@ Route::get('/ver/{id}','EventoController@ver');
 Route::Post('editarEvento','EventoController@editarEvento');
 Route::Post('apagarEvento','EventoController@apagarEvento');
 
->>>>>>> Lançamento com requisição AJAX
+//ROTAS ASSENTO
+Route::post('inserirAssento','AssentoController@inserirAssento');
+Route::get('/eliminarAssento/{id}/{id1}','AssentoController@eliminar');
+Route::get('/verAssento/{id}','AssentoController@ver');
+
+//ROTAS CONVIDADO
+Route::post('inserirConvidado','ConvidadoController@inserirConvidado');
+
+
+
 

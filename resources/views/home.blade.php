@@ -5,10 +5,8 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
-<<<<<<< HEAD
-=======
+
         <meta name="csrf-token" content="{{ csrf_token() }}">
->>>>>>> Lançamento com requisição AJAX
 
         <link rel="shortcut icon" href="{{ url('images/favicon.ico') }}">
 
@@ -44,7 +42,7 @@
             </footer>
         </div>
     </div>
-<<<<<<< HEAD
+
     <!-- END wrapper -->
     <script>
         var resizefunc = [];
@@ -54,8 +52,6 @@
     <script src="{{ url('js/modernizr.min.js') }}" type="text/javascript"></script>       
     <script src="{{ url('js/jquery.min.js') }}"></script>
     <script src="{{ url('js/popper.min.js') }}"></script><!-- Popper for Bootstrap -->
-=======
-    
     
     <!--<script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/jquery.js') }}"></script>-->
@@ -199,6 +195,35 @@
                 }
             });
         });
+
+        //validação para adoionar dinamicamente acompanhante de convidado
+         $(function(){
+				// Clona a linha oculta que tem campos base e agrega no final da tabela
+				$("#maisAcompanhante").on('click', function(){
+					$("#tabela tbody tr:eq(0)").clone().removeClass('linha').appendTo("#tabela");
+				});
+			 
+				// Evento que selecciona a linha e elimina 
+				$(document).on("click",".eliminar",function(){
+					var parent = $(this).parents().get(0);
+					$(parent).remove();
+				});
+			});
+       
+       //validação do formulário do assento para cadeira sem capacidade
+        document.getElementById("tipo").onchange = function() {
+            alterar();
+        };
+        function alterar() {
+            var dado = document.getElementById("tipo");
+            var itemSelecionado = dado.options[dado.selectedIndex].value;
+                if (itemSelecionado==="Cadeira") {
+                    document.getElementById("el").style.display = 'none';
+                }else {
+                    document.getElementById("el").style.display = 'block';
+                }
+        }
+
        
     </script>  
   
@@ -209,7 +234,6 @@
     <script src="{{ url('js/modernizr.min.js') }}" type="text/javascript"></script>       
     <script src="{{ url('js/jquery.min.js') }}"></script>
     <script src="{{ url('js/popper.min.js') }}"></script>
->>>>>>> Lançamento com requisição AJAX
     <script src="{{ url('js/bootstrap.min.js') }}"></script>
     <script src="{{ url('js/detect.js') }}"></script>
     <script src="{{ url('js/fastclick.js') }}"></script>

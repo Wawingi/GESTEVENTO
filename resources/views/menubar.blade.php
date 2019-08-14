@@ -3,7 +3,7 @@
     <!-- LOGO -->
     <div class="topbar-left">
         <div class="text-center">
-            <a href="{{ url('/') }}" class="logo"><i class="fa fa-birthday-cake"></i> <span>GUESTEVENTO</span></a>
+            <a href="{{ url('/') }}" class="logo"><i class="fa fa-birthday-cake"></i> <span>GESTEVENTO</span></a>
         </div>
       
     </div>
