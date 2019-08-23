@@ -81,6 +81,9 @@
                                         <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modalevento">
                                             <i class='fa  fa-plus-square'></i> Inserir Assento
                                         </button>
+                                        <a href='{{ url("/eventoPDF/") }}' class="btn btn-secondary">
+                                            <i class='fa fa-file-pdf-o'></i> Ver PDF
+                                        </a>
                             
                                     </div>
                                 </div>

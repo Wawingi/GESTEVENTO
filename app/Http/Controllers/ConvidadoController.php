@@ -18,13 +18,14 @@ class ConvidadoController extends Controller
         $convidado->estado = 'Ausente';
         $convidado->id_assento = $request->idAssento;
         $acompanhantes = $request->nome_acompanhante;
-        $tamanho = count($acompanhantes);
+        
         
         $idConvidado = DB::table('convidado')->insertGetId(
             ['nome' => $request->nome, 'genero' => $request->genero, 'estado' => 'Ausente', 'id_assento' => $request->idAssento]
         );
         if($idConvidado>0 && $acompanhantes[0]!=null){
-            for($cont=0;$cont<$tamanho;$cont++){
+            //$tamanho = count($acompanhantes);
+            for($cont=0;$cont<count($acompanhantes);$cont++){
                 DB::table('acompanhante')->insert(
                     ['nome' => $acompanhantes[$cont], 'id_convidado' => $idConvidado]
                 );
@@ -36,6 +37,5 @@ class ConvidadoController extends Controller
         return redirect()->action(
             'AssentoController@ver', ['id' => $request->idAssento]
         )->with('info','Inserido com sucesso');
-
     }
 }

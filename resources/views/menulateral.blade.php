@@ -15,7 +15,9 @@
                                             <span class="menu-arrow"></span></a>
                                             <ul class="list-unstyled">
                                                 <li><a href="{{ url('inserir') }}">Registar Evento</a></li>
-                                                <li><a href="{{ url('listar') }}">Listar Convidados</a></li>                                                              
+                                                <li><a href="{{ url('listar') }}">Eventos Activos</a></li>
+                                                <li><a href="#">Eventos Realizados</a></li> 
+                                                <li><a href="{{ url('pdf') }}">PDF</a></li>                                                                                                                           
                                             </ul>
                                 </li>
                            

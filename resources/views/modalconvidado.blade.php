@@ -17,7 +17,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <label for="field-3" class="control-label">Genero</label><br>
                             <div style="margin-left:7px" class="radio radio-info form-check-inline">
                                 <input type="radio" id="inlineRadio1" value="M" name="genero" checked>
@@ -30,18 +30,20 @@
                         </div>
                     </div>
                     <br>
-                    <!-- AJAX para adicionar acompanhante -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <button type="button" id="maisAcompanhante" name="maisAcompanhante" class="btn btn-primary btn-sm"><i class='fa fa-plus'>  Mais Acompanhante </i></button><br>
-                            <table id="tabela" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                                <tr class="linha">
-                                    <td style="text-align: center;width:90%"><input  type="text" class="form-control" name="nome_acompanhante[]" placeholder="Informe o nome do acompanhante"></td>
-                                    <td class="eliminar" style="text-align: center"><button type="button" class="btn btn-danger btn-md"><i class='fa fa-trash-alt'> </i></button></td>                                                    
-                                </tr>
-                            </table>
+                    <?php if($assento->tipo !='Cadeira'){ ?>
+                        <!-- AJAX para adicionar acompanhante -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="button" id="maisAcompanhante" name="maisAcompanhante" class="btn btn-primary btn-sm"><i class='fa fa-plus'>  Mais Acompanhante </i></button><br>
+                                <table id="tabela" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                    <tr class="linha">
+                                        <td style="text-align: center;width:90%"><input  type="text" class="form-control" name="nome_acompanhante[]" placeholder="Informe o nome do acompanhante"></td>
+                                        <td class="eliminar" style="text-align: center"><button type="button" class="btn btn-danger btn-md"><i class='fa fa-trash-alt'> </i></button></td>                                                    
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
-                    </div>
+                    <?php } ?>
                     <input  type="hidden" class="form-control" value="<?php echo $assento->id ?>" required name="idAssento">
                     
                     <div class="modal-footer">

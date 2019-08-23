@@ -19,12 +19,17 @@ Route::get('/inserir',function(){
     return view('inserirevento');
 });
 
+Route::get('/pdf',function(){
+    return view('pdfevento');
+});
+
 Route::get('/listar','EventoController@listar');
 Route::post('/inserir','EventoController@inserir');
 Route::get('/editar/{id}','EventoController@editar');
 Route::post('/actualizar/{id}','EventoController@actualizar');
 Route::get('/eliminar/{id}','EventoController@eliminar');
 Route::get('/ver/{id}','EventoController@ver');
+Route::get('/eventoPDF/','EventoController@verPDF');
 
 
 //Route::resource('evento','EventoController');

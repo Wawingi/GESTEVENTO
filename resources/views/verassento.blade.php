@@ -32,14 +32,14 @@
                                             <div class="row">
                                                 <div style="margin-top:5px" class="col-5">
                                                     <div class="wid-u-info">
-                                                        <h3 class="mt-0 m-b-8 font-25">Designação</h3>
+                                                        <h3 style="font-size:20px" class="mt-0 m-b-8">Designação</h3>
                                                         <h4><p class="text-muted m-b-5 font-20">Tipo</p></h4>
                                                         <h4><p><b>Capacidade</b></p></h4>
                                                     </div>
                                                 </div>
-                                                <div style="margin-top:5px;margin-left:-250px" class="col-6">
+                                                <div style="margin-top:5px;margin-left:-200px" class="col-6">
                                                     <div class="wid-u-info">
-                                                        <h3 class="mt-0 m-b-8 font-25">: <?php echo $assento->designacao ?></h3>
+                                                        <h3 style="font-size:20px" class="mt-0 m-b-8">: <?php echo $assento->designacao ?></h3>
                                                         <h4><p class="text-muted m-b-5 font-20">: <?php echo $assento->tipo ?></p></h4>
                                                         <h4><p><b>: <?php echo $assento->capacidade ?></b></p></h4>
                                                     </div>
@@ -61,11 +61,16 @@
                                                 </div>
                                             </div>
                                             <hr>
-                                            <!-- Importação da Modal Assento -->
-                                            @include('modalconvidado')
-                                            <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modalconvidado">
-                                                <i class='fa  fa-plus-square'></i> Inserir Convidado
-                                            </button>
+                                            <?php if ($cont_elementos_mesa>=$assento->capacidade){ ?>
+                                                <p style="color:red;text-align:center"><b>O ASSENTO JA SE ENCONTRA PREENCHIDO!</b></p>
+                                            <?php }else{ ?>
+                                                 <!-- Importação da Modal Assento -->
+                                                 @include('modalconvidado')
+                                                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modalconvidado">
+                                                    <i class='fa  fa-plus-square'></i> Inserir Convidado
+                                                </button>
+                                            <?php } ?>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -76,7 +81,7 @@
                             <div class="col-12">
                                 <div  class="card-box table-responsive">
                                     <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                                    <h4 style="text-align:center"><b>CONVIDADOS ASSOCIADOS A ESTA MESA</b></h4>   
+                                    <h4 style="text-align:center"><b>CONVIDADOS DA MESA: <?php echo $cont_elementos_mesa. ' DE ' .$assento->capacidade ?></b></h4>   
                                       
                                     <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
                                         <thead>
@@ -90,24 +95,21 @@
                                         </thead>
                                         <tbody>
                                         <?php 
-                                            $convidados = App\Model\Convidado::where('id_assento', '=', $assento->id)->paginate(15); 
-                                            $loop=0;
+                                            $convidados = App\Model\Convidado::where('id_assento', '=', $assento->id)->get(); 
                                             foreach($convidados as $convidado):
                                         ?>
                                             <tr>
-                                                <td style="text-align: center">
-                                                    
-                                                </td>
-                                                <td style="text-align: center">{{ $convidado->nome }}</td>
+                                                <td style="text-align: center"></td>
+                                                <td style="text-align: center"><a href="">{{ $convidado->nome }}</a></td>
                                                 <td style="text-align: center">{{ $convidado->genero }}</td>
                                                 <td style="text-align: center">{{ $convidado->estado }}</td>
-                                                <td style="text-align: center;word-spacing: 10px">
+                                                <td style="text-align: left;width:25%">
                                                     <?php 
-                                                        $convidados = App\Model\Acompanhante::where('id_convidado', '=', $convidado->id)->paginate(15); 
-                                                        //echo $convidados[0]->nome;
-                                                        //foreach($convidados as $convidado):
-                                                    ?>    
-                                                    
+                                                        $acompanhantes = App\Model\Acompanhante::where('id_convidado', '=', $convidado->id)->get(); 
+                                                        foreach($acompanhantes as $acompanhante):
+                                                    ?>
+                                                        <li>{{ $acompanhante->nome }}</li>
+                                                    <?php endforeach ?>                                                   
                                                 </td>
                                             </tr>
                                         <?php endforeach ?>

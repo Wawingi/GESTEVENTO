@@ -7,6 +7,7 @@ use Validator;
 use Response;
 use Illuminate\Support\Facades\Input;
 use App\http\Requests;
+use PDF;
 
 class EventoController extends Controller
 {
@@ -115,6 +116,12 @@ class EventoController extends Controller
     public function ver($id){
         $evento = Evento::find($id);
         return view('verevento',compact('evento'));
+    }
+
+    public function verPDF(){
+       
+        $pdf = PDF::loadView('pdfevento');
+        return $pdf->setPaper('a4')->stream('pdfevento');
     }
 
 }
