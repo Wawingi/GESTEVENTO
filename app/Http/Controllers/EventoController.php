@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Model\Evento;
 use Validator;
 use Response;
@@ -11,6 +12,11 @@ use PDF;
 
 class EventoController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
    
     public function index()
     {
@@ -118,9 +124,10 @@ class EventoController extends Controller
         return view('verevento',compact('evento'));
     }
 
-    public function verPDF(){
-       
-        $pdf = PDF::loadView('pdfevento');
+    public function verPDF($id){
+        $evento = Evento::find($id)->get();
+        $convidados = DB::select('select c.id,c.nome,a.designacao from convidado c,assento a where c.id_assento=a.id AND a.id_evento = :id_evento ORDER BY designacao',['id_evento' => $id]);
+        $pdf = PDF::loadView('pdfevento',compact('evento','convidados'));
         return $pdf->setPaper('a4')->stream('pdfevento');
     }
 

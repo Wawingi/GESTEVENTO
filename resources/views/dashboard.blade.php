@@ -16,12 +16,10 @@
                                 </div>
                             </div>
                         </div>
-                        <br><br><br><br>
+                        <br>
                         <div class="row">
                             <div class="col-sm-12">
-                                <div class="">
-                                    
-                                </div>
+                                    <img style="width:400px" src="{{ asset('images/logoWSA.png') }}" class="rounded mx-auto d-block" alt="...">
                             </div>
                         </div>
 

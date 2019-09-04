@@ -7,6 +7,12 @@ use App\Model\Convidado;
 
 class ConvidadoController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function inserirConvidado(Request $request){
         $this->validate($request,[
             'nome'=>'required',

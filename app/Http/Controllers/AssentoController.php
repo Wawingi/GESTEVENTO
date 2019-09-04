@@ -11,6 +11,12 @@ use Validator;
 
 class AssentoController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function inserirAssento(Request $request){
         $this->validate($request,[
             'tipo'=>'required',

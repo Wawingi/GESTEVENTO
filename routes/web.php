@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('auth.login');
 });
 
 Route::get('/inserir',function(){
@@ -29,13 +29,13 @@ Route::get('/editar/{id}','EventoController@editar');
 Route::post('/actualizar/{id}','EventoController@actualizar');
 Route::get('/eliminar/{id}','EventoController@eliminar');
 Route::get('/ver/{id}','EventoController@ver');
-Route::get('/eventoPDF/','EventoController@verPDF');
+Route::get('/eventoPDF/{id}','EventoController@verPDF');
 
 
 //Route::resource('evento','EventoController');
 Route::get('inserir',function(){
     return view('inserirevento');
-});
+})->middleware('auth');
 
 //Rotas para AJAX
 Route::get('listar','EventoController@listar');
@@ -57,6 +57,10 @@ Route::get('/verAssento/{id}','AssentoController@ver');
 //ROTAS CONVIDADO
 Route::post('inserirConvidado','ConvidadoController@inserirConvidado');
 
+
+Auth::routes();
+
+Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
 
 

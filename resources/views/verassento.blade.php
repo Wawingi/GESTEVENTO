@@ -81,7 +81,7 @@
                             <div class="col-12">
                                 <div  class="card-box table-responsive">
                                     <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0" width="100%">
-                                    <h4 style="text-align:center"><b>CONVIDADOS DA MESA: <?php echo $cont_elementos_mesa. ' DE ' .$assento->capacidade ?></b></h4>   
+                                    <h4 style="text-align:center"><b>CONVIDADOS: <?php echo $cont_elementos_mesa. ' DE ' .$assento->capacidade ?></b></h4>   
                                       
                                     <table id="table" class="table table-striped table-bordered" cellspacing="0" width="100%">
                                         <thead>
@@ -91,6 +91,7 @@
                                             <th style="text-align: center">Genero</th>
                                             <th style="text-align: center">Estado</th>
                                             <th style="text-align: center">Acompanhante(s)</th>
+                                            <th style="text-align: center">Gerar Código QR</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -100,7 +101,7 @@
                                         ?>
                                             <tr>
                                                 <td style="text-align: center"></td>
-                                                <td style="text-align: center"><a href="">{{ $convidado->nome }}</a></td>
+                                                <td style="text-align: center"><a href="#">{{ $convidado->nome }}</a></td>
                                                 <td style="text-align: center">{{ $convidado->genero }}</td>
                                                 <td style="text-align: center">{{ $convidado->estado }}</td>
                                                 <td style="text-align: left;width:25%">
@@ -110,6 +111,9 @@
                                                     ?>
                                                         <li>{{ $acompanhante->nome }}</li>
                                                     <?php endforeach ?>                                                   
+                                                </td>
+                                                <td style="text-align: center">
+                                                    <a href='#' class="btn-primary btn-sm"><i class="fa fa-qrcode"></i></a>
                                                 </td>
                                             </tr>
                                         <?php endforeach ?>

@@ -7,9 +7,7 @@
     </head>
     <body style="background:white">
         <div class="container-fluid">
-                <?php 
-                    $evento = App\Model\Evento::where('id', '=', 1)->get(); 
-                ?>
+               
                 <div style="height:115px;border:solid 1px black" class="card-box widget-user">    
                     <div class="row">
                         <div class="col-6">
@@ -28,38 +26,35 @@
                         </div>
                     </div>
                 </div>
-            <br>
+            <hr>
             <div class="row">
                 <div class="col-12">
                     
-                    <table class="table">
+                    <table style="font-size:15px;font-family:times new roman" class="table">
                         <thead class="thead-light">
                             <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                                <th scope="col">#</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Assento</th>
+                                <th scope="col">Acompanhante(s)</th>
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach($convidados as $convidado)
                             <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{$convidado->nome}}</td>
+                                <td>{{$convidado->designacao}}</td>
+                                <td>
+                                    <?php 
+                                        $acompanhantes = App\Model\Acompanhante::where('id_convidado', '=',$convidado->id)->get(); 
+                                        foreach($acompanhantes as $acompanhante):
+                                    ?>
+                                        <li>{{ $acompanhante->nome }}</li>
+                                    <?php endforeach ?> 
+                                </td>
                             </tr>
-                            <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                            </tr>
-                            <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

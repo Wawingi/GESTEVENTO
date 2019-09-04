@@ -1,5 +1,5 @@
             <!-- ========== Inicio Menu Lateral ========== -->
-            <div class="left side-menu">
+            <div style="background-color:" class="left side-menu">
                 <div class="sidebar-inner slimscrollleft">
                     <!--- Divider -->
                     <div id="sidebar-menu">
@@ -7,7 +7,7 @@
                             <li class="menu-title">Inicio</li>
 
                             <li>
-                                <a href="{{ url('/') }}" class="waves-effect waves-primary"><i class="fas fa-home"></i><span> Página Inicial </span></a>
+                                <a href="{{ url('/dashboard') }}" class="waves-effect waves-primary"><i class="fas fa-home"></i><span> Página Inicial </span></a>
                             </li>
             
                                 <li class="has_sub">
@@ -17,7 +17,7 @@
                                                 <li><a href="{{ url('inserir') }}">Registar Evento</a></li>
                                                 <li><a href="{{ url('listar') }}">Eventos Activos</a></li>
                                                 <li><a href="#">Eventos Realizados</a></li> 
-                                                <li><a href="{{ url('pdf') }}">PDF</a></li>                                                                                                                           
+                                                <li><a href="{{ url('login') }}">PDF</a></li>                                                                                                                           
                                             </ul>
                                 </li>
                            
@@ -25,7 +25,7 @@
                                 <a href="javascript:void(0);" class="waves-effect waves-primary"><i class="fas fa-bar-chart-o"></i>
                                     <span> Estatística </span> <span class="menu-arrow"></span> </a>
                                 <ul class="list-unstyled">
-                                    <li><a href="../estatistica?categoria=<?php echo base64_encode('Ensino Superior') ?>">Ensino Superior</a></li>
+                                    <li><a href="#">Geral</a></li>
                                 </ul>
                             </li>
                         </ul>

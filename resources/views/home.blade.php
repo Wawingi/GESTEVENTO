@@ -19,15 +19,14 @@
 		<link href="{{ url('css/icons.css') }}" rel="stylesheet" type="text/css"/>
 		<link href="{{ url('css/style.css') }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset('css/all.css') }}" rel="stylesheet" type="text/css"/>
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css"/>  
-        <link href="{{ asset('css/fontawesome.css') }}" rel="stylesheet" type="text/css"/> 
+        <link href="{{ asset('css/fontawesome.css') }}" rel="stylesheet" type="text/css"/>
+        <link href="//cdn.materialdesignicons.com/4.2.95/css/materialdesignicons.min.css"  rel="stylesheet"> 
     </head>
 
-    <body class="fixed-left">
-
+    <body style="background-color:#c3def9" class="fixed-left">
         <!-- Begin page -->
-        <div id="wrapper">
-
+        <div  id="wrapper">
+            
             <!-- ========== Inclusão do menu Bar ========== -->
             @include('menubar')
             <!-- ========== Inclusão do menu lateral ====== -->
@@ -38,9 +37,9 @@
             @yield('content')
             
             <!-- end content -->
-            <footer class="footer">
-                2019 © GESTEVENTO
-            </footer>
+           <footer class="footer">
+                2018 © GESTEVENTO
+           </footer>
         </div>
     </div>
 
@@ -197,7 +196,7 @@
             });
         });
 
-        //validação para adoionar dinamicamente acompanhante de convidado
+        //validação para adicionar dinamicamente acompanhante de convidado
          $(function(){
 				// Clona a linha oculta que tem campos base e agrega no final da tabela
 				$("#maisAcompanhante").on('click', function(){

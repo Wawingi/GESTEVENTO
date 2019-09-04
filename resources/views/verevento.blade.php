@@ -78,10 +78,11 @@
                                         <hr>
                                         <!-- Importação da Modal Assento -->
                                         @include('modalassento')
+                        
                                         <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modalevento">
                                             <i class='fa  fa-plus-square'></i> Inserir Assento
                                         </button>
-                                        <a href='{{ url("/eventoPDF/") }}' class="btn btn-secondary">
+                                        <a href='{{ url("/eventoPDF/{$evento->id}") }}' class="btn btn-secondary">
                                             <i class='fa fa-file-pdf-o'></i> Ver PDF
                                         </a>
                             
@@ -89,12 +90,7 @@
                                 </div>
                             </div>
                         </div>
-                        <?php 
-                            //DB::table('users')->where('name', 'John')->value('email');
-                           
-                            
-                            
-                        ?>
+                        
                         <!-- Listagem dos assentos -->
                         <div class="row">
                             <?php 
