@@ -17,16 +17,25 @@
                                                 <li><a href="{{ url('inserir') }}">Registar Evento</a></li>
                                                 <li><a href="{{ url('listar') }}">Eventos Activos</a></li>
                                                 <li><a href="#">Eventos Realizados</a></li> 
-                                                <li><a href="{{ url('login') }}">PDF</a></li>                                                                                                                           
+                                                                                                                                                                           
                                             </ul>
                                 </li>
                            
                                 <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect waves-primary"><i class="fas fa-bar-chart-o"></i>
+                                    <a href="javascript:void(0);" class="waves-effect waves-primary"><i class="fas fa-bar-chart-o"></i>
                                     <span> Estatística </span> <span class="menu-arrow"></span> </a>
-                                <ul class="list-unstyled">
-                                    <li><a href="#">Geral</a></li>
-                                </ul>
+                                    <ul class="list-unstyled">
+                                        <li><a href="#">Geral</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has_sub">
+                                    <a href="javascript:void(0);" class="waves-effect waves-primary"><i class="fa fa-user-circle"></i>
+                                    <span> Utilizadores </span> <span class="menu-arrow"></span> </a>
+                                    <ul class="list-unstyled">
+                                        <li><a href="#">Registar Utilizador</a></li>                                    
+                                        <li><a href="#">Listar Utilizadores</a></li>
+                                    </ul>
+                                </li>
                             </li>
                         </ul>
                         <div class="clearfix"></div>

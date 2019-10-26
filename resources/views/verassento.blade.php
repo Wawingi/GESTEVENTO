@@ -18,8 +18,17 @@
                                 </div>
                             </div>
                         </div>
-                        
-
+                        @if(session('info'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Alerta!</strong>
+                                {{ session('info')}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        @endif
+                        <!-- Importação da Modal Assento -->
+                        @include('modalconvidado')
                         <div class="row">
                                 <div class="col-12">
                                     <div style="height:265px" class="card-box widget-user">
@@ -39,9 +48,9 @@
                                                 </div>
                                                 <div style="margin-top:5px;margin-left:-200px" class="col-6">
                                                     <div class="wid-u-info">
-                                                        <h3 style="font-size:20px" class="mt-0 m-b-8">: <?php echo $assento->designacao ?></h3>
-                                                        <h4><p class="text-muted m-b-5 font-20">: <?php echo $assento->tipo ?></p></h4>
-                                                        <h4><p><b>: <?php echo $assento->capacidade ?></b></p></h4>
+                                                        <h3 style="font-size:20px" class="mt-0 m-b-8">: {{ $assento->designacao }}</h3>
+                                                        <h4><p class="text-muted m-b-5 font-20">: {{ $assento->tipo }}</p></h4>
+                                                        <h4><p><b>: {{ $assento->capacidade }}</b></p></h4>
                                                     </div>
                                                 </div>
                                             </div>
@@ -64,8 +73,7 @@
                                             <?php if ($cont_elementos_mesa>=$assento->capacidade){ ?>
                                                 <p style="color:red;text-align:center"><b>O ASSENTO JA SE ENCONTRA PREENCHIDO!</b></p>
                                             <?php }else{ ?>
-                                                 <!-- Importação da Modal Assento -->
-                                                 @include('modalconvidado')
+                                                
                                                 <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modalconvidado">
                                                     <i class='fa  fa-plus-square'></i> Inserir Convidado
                                                 </button>
@@ -79,6 +87,8 @@
                         <!-- Listar convidados -->
                         <div class="row">
                             <div class="col-12">
+							<form method="POST" action="{{ url('/apagarConvidado')}}" >
+								@csrf
                                 <div  class="card-box table-responsive">
                                     <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0" width="100%">
                                     <h4 style="text-align:center"><b>CONVIDADOS: <?php echo $cont_elementos_mesa. ' DE ' .$assento->capacidade ?></b></h4>   
@@ -91,7 +101,7 @@
                                             <th style="text-align: center">Genero</th>
                                             <th style="text-align: center">Estado</th>
                                             <th style="text-align: center">Acompanhante(s)</th>
-                                            <th style="text-align: center">Gerar Código QR</th>
+                                            <th style="text-align: center">Ver Código QR</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -100,7 +110,7 @@
                                             foreach($convidados as $convidado):
                                         ?>
                                             <tr>
-                                                <td style="text-align: center"></td>
+                                                <td style="text-align: center"><input type="checkbox" onclick="troca()" value="{{ $convidado->id }}" name="convidados[]" class="flat"></td>
                                                 <td style="text-align: center"><a href="#">{{ $convidado->nome }}</a></td>
                                                 <td style="text-align: center">{{ $convidado->genero }}</td>
                                                 <td style="text-align: center">{{ $convidado->estado }}</td>
@@ -113,14 +123,19 @@
                                                     <?php endforeach ?>                                                   
                                                 </td>
                                                 <td style="text-align: center">
-                                                    <a href='#' class="btn-primary btn-sm"><i class="fa fa-qrcode"></i></a>
+                                                    <a href='{{ url("verqrcode/{$convidado->nome}") }}' class="btn-primary btn-sm"><i class="fa fa-qrcode"></i></a>
                                                 </td>
                                             </tr>
                                         <?php endforeach ?>
                                         </tbody>
                                     </table>
-                                    
-                                </div>
+									<hr>
+									<div class="row">
+										<button disabled type="submit" id="btnAp" class="btn btn-danger"><i class="fa fa-trash-alt"> ELIMINAR</i></button>
+										<h4 style="margin-left:40px" id="texto">0 </h4> - Selecionados
+									</div>
+								</div>
+							</form>
                             </div>
                         </div>
 
@@ -129,4 +144,20 @@
                 </div>
                 <!-- end container -->
             </div>
+			<script>	
+				function troca(){			
+					var cbox = document.getElementsByClassName('flat');
+					var cont=0;
+					var btnApagar = $('#btnAp');
+					var mostra = $('#texto');
+					
+					for(var i=0;i<=cbox.length;i++){
+						if(cbox[i].checked){
+							btnApagar.prop("disabled",false);
+							mostra.text(++cont);
+						}	
+					}
+
+				}
+			</script>
 @stop

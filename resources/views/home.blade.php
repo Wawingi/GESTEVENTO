@@ -20,7 +20,7 @@
 		<link href="{{ url('css/style.css') }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset('css/all.css') }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset('css/fontawesome.css') }}" rel="stylesheet" type="text/css"/>
-        <link href="//cdn.materialdesignicons.com/4.2.95/css/materialdesignicons.min.css"  rel="stylesheet"> 
+        <link href="https://cdn.materialdesignicons.com/4.2.95/css/materialdesignicons.min.css"  rel="stylesheet"> 
     </head>
 
     <body style="background-color:#c3def9" class="fixed-left">

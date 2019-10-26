@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/inserir',function(){
-    return view('inserirevento');
+    return view('inserirevento');  
 });
 
 Route::get('/pdf',function(){
@@ -56,6 +56,9 @@ Route::get('/verAssento/{id}','AssentoController@ver');
 
 //ROTAS CONVIDADO
 Route::post('inserirConvidado','ConvidadoController@inserirConvidado');
+Route::get('verqrcode/{nome}','ConvidadoController@verQRCODE');
+Route::post('apagarConvidado','ConvidadoController@eliminar');
+
 
 
 Auth::routes();
