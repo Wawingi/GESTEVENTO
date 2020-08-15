@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Resources\Convidado as ConvidadoResource;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,8 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('verEventoDecorrerAPI/{id}','EventoController@verEventoDecorrerAPI');
+Route::get('verAssentoDecorrerAPI/{id}','EventoController@verAssentoDecorrerAPI');
+Route::get('convidados/{id}','EventoController@convidadosAPI');
+Route::get('convidadoMudarEstadoAPI/{id}','EventoController@convidadoMudarEstadoAPI');

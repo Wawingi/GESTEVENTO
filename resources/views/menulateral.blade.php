@@ -11,14 +11,13 @@
                             </li>
             
                                 <li class="has_sub">
-                                        <a href="javascript:void(0);" class="waves-effect waves-primary"><i class="fas fa-cogs"></i> <span> Administração </span>
-                                            <span class="menu-arrow"></span></a>
-                                            <ul class="list-unstyled">
-                                                <li><a href="{{ url('inserir') }}">Registar Evento</a></li>
-                                                <li><a href="{{ url('listar') }}">Eventos Activos</a></li>
-                                                <li><a href="#">Eventos Realizados</a></li> 
-                                                                                                                                                                           
-                                            </ul>
+                                    <a href="javascript:void(0);" class="waves-effect waves-primary"><i class="fas fa-cogs"></i> <span> Administração </span>
+                                    <span class="menu-arrow"></span></a>
+                                    <ul class="list-unstyled">
+                                        <li><a href="{{ url('listarEvento') }}">Listar Eventos</a></li>
+                                        <li><a href="{{ url('gerarapi') }}">Exportação de Dados</a></li> 
+                                        <li><a href="{{ url('eventosdecorrer') }}">Eventos a Decorrer</a></li>                                                                                                                            
+                                    </ul>
                                 </li>
                            
                                 <li class="has_sub">
@@ -31,9 +30,8 @@
                                 <li class="has_sub">
                                     <a href="javascript:void(0);" class="waves-effect waves-primary"><i class="fa fa-user-circle"></i>
                                     <span> Utilizadores </span> <span class="menu-arrow"></span> </a>
-                                    <ul class="list-unstyled">
-                                        <li><a href="#">Registar Utilizador</a></li>                                    
-                                        <li><a href="#">Listar Utilizadores</a></li>
+                                    <ul class="list-unstyled">                                    
+                                        <li><a href="{{ url('listarUtilizadores')}}">Listar Utilizadores</a></li>
                                     </ul>
                                 </li>
                             </li>

@@ -31,7 +31,7 @@
                                             <div id="el" class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="field-3" class="control-label">Capacidade</label>
-                                                    <input  type="number" class="form-control"  name="capacidade" placeholder="ex: 10">
+                                                    <input required type="number" class="form-control"  name="capacidade" placeholder="ex: 10">
                                                 </div>
                                             </div>
                                         </div>

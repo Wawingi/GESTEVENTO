@@ -1,19 +1,15 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return view('auth.login');
 });
+
+Route::get('listarUtilizadores', 'UtilizadorController@listarutilizador');
+Route::post('registarutilizador', 'UtilizadorController@registarutilizador');
+Route::post('editarutilizador', 'UtilizadorController@editarutilizador');
+Route::post('alterarSenhaUtilizador', 'UtilizadorController@alterarSenhaUtilizador');
+Route::get('eliminarUtilizador/{id}', 'UtilizadorController@eliminarUtilizador');
+
 
 Route::get('/inserir',function(){
     return view('inserirevento');  
@@ -30,7 +26,8 @@ Route::post('/actualizar/{id}','EventoController@actualizar');
 Route::get('/eliminar/{id}','EventoController@eliminar');
 Route::get('/ver/{id}','EventoController@ver');
 Route::get('/eventoPDF/{id}','EventoController@verPDF');
-
+Route::get('eventosdecorrer','EventoController@eventosdecorrer');
+Route::get('vereventodecorrer/{id}','EventoController@vereventodecorrer');
 
 //Route::resource('evento','EventoController');
 Route::get('inserir',function(){
@@ -38,12 +35,15 @@ Route::get('inserir',function(){
 })->middleware('auth');
 
 //Rotas para AJAX
-Route::get('listar','EventoController@listar');
-Route::post('inserir','EventoController@inserir');
+Route::get('/listarEvento',function(){
+    return view('listarevento');
+});
+Route::get('pegaEventos','EventoController@pegaEventos');
+Route::post('registarEvento','EventoController@registarEvento');
 Route::resource('evento','EventoController');
-Route::get('editar/{id}','EventoController@editar');
-Route::post('actualizar/{id}','EventoController@actualizar');
-Route::get('eliminar/{id}','EventoController@eliminar');
+Route::get('pegaEvento/{id}','EventoController@pegaEvento');
+Route::post('editarEvento','EventoController@editarEvento');
+Route::get('eliminarEvento/{id}','EventoController@eliminar');
 Route::get('/ver/{id}','EventoController@ver');
 
 Route::Post('editarEvento','EventoController@editarEvento');
@@ -51,19 +51,31 @@ Route::Post('apagarEvento','EventoController@apagarEvento');
 
 //ROTAS ASSENTO
 Route::post('inserirAssento','AssentoController@inserirAssento');
+Route::post('editarAssento','AssentoController@editarAssento');
 Route::get('/eliminarAssento/{id}/{id1}','AssentoController@eliminar');
-Route::get('/verAssento/{id}','AssentoController@ver');
+Route::get('/verAssento/{id}/{idEvento}/{entidade}','AssentoController@ver');
 
 //ROTAS CONVIDADO
 Route::post('inserirConvidado','ConvidadoController@inserirConvidado');
-Route::get('verqrcode/{nome}','ConvidadoController@verQRCODE');
-Route::post('apagarConvidado','ConvidadoController@eliminar');
+Route::post('gerarConvite','ConvidadoController@gerarConvite');
+Route::get('verqrcode/{nome}/{id}/{pasta}','ConvidadoController@verQRCODE');
+Route::get('apagarConvidado/{nome}/{id}/{pasta}','ConvidadoController@eliminar');
+Route::get('convitesGerados/{id}','ConvidadoController@convitesGeradosPage');
+Route::get('pegaConvitesGerados/{id}/{entidade}','ConvidadoController@pegaConvitesGerados');
 
-
+//ROTAS API
+Route::get('gerarapi','EventoController@getEvento');
+Route::get('vereventoAPI/{id}','EventoController@verEventoAPI');
+Route::post('registarAPI','EventoController@registarAPI');
+Route::get('apagarEventoAPI/{id}','EventoController@apagarEventoAPI');
 
 Auth::routes();
 
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+
+Route::get('/back',function(){
+    return back();
+});
 
 
 

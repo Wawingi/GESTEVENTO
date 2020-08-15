@@ -33,7 +33,7 @@ class AssentoController extends Controller
         }else{
             $assento->capacidade = $request->capacidade;
         }
-        $assento->designacao = $request->designacao;
+        $assento->designacao = strtoupper($request->designacao);
 
         //Verificar se um assento ja existe na BD
         $designacao = DB::table('assento')
@@ -61,11 +61,22 @@ class AssentoController extends Controller
         )->with('info','Eliminado com sucesso');
     }
 
-    public function ver($id){
+    public function ver($id,$id_Evento,$entidade){
+        $pasta=$entidade."_".$id_Evento;
         $assento = Assento::find($id);
         $cont_convidado = Convidado::where('id_assento', $id)->count();
         $cont_acompanhante = count(DB::select('select * from acompanhante ac,convidado c where c.id=ac.id_convidado AND c.id_assento = :id_assento',['id_assento' => $id]));
         $cont_elementos_mesa = $cont_convidado+$cont_acompanhante;
-        return view('verassento',compact('assento','cont_elementos_mesa'));
+        return view('verassento',compact('assento','cont_elementos_mesa','pasta'));
+    }
+
+    public function editarAssento(Request $request){
+        if(DB::table('assento')          
+            ->where('id','=',$request->id_assento)
+            ->update(['designacao' => $request->designacao])){
+            return back()->with('info','Actualizado com sucesso');  
+        } else {
+            return back()->with('info','Erro ao actualizar');  
+        } 
     }
 }

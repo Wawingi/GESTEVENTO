@@ -25,7 +25,7 @@
     <link href="{{ asset('css/fontawesome.css') }}" rel="stylesheet" type="text/css"/>
     <link href="//cdn.materialdesignicons.com/4.2.95/css/materialdesignicons.min.css"  rel="stylesheet"> 
 </head>
-<body>
+<body style="background-image: url('images/fundo.png')">
     <div id="app">
         <main class="py-4">
             @yield('content')

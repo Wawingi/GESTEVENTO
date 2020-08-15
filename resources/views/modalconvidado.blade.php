@@ -24,7 +24,7 @@
                                 <label for="inlineRadio1"> Masculino </label>
                             </div>
                             <div class="radio form-check-inline">
-                                <input type="radio" id="inlineRadio2" value="F" name="genero" checked>
+                                <input type="radio" id="inlineRadio2" value="F" name="genero">
                                 <label for="inlineRadio2"> Feminino </label>
                             </div>
                         </div>
@@ -44,11 +44,11 @@
                             </div>
                         </div>
                     <?php } ?>
-                    <input  type="hidden" class="form-control" value="<?php echo $assento->id ?>" required name="idAssento">
-                    
+                    <input  type="hidden" class="form-control" value="{{$assento->id}}" required name="idAssento">
+                    <input  type="hidden" class="form-control" value="{{$pasta}}" required name="pasta">
                     <div class="modal-footer">
                         <button type="button" class="btn btn-warning waves-effect" data-dismiss="modal">Fechar</button>
-                        <button type="submit" name="registar" class="btn btn-primary waves-effect waves-light">Registar</button>
+                        <button type="submit" class="btn btn-primary waves-effect waves-light">Registar</button>
                     </div>
                 </form>
             </div>

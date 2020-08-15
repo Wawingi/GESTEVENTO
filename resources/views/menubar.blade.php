@@ -1,4 +1,4 @@
-
+@include('auth.modalalterarsenha')
 <div style="background-color:#3bafda" class="topbar">
     <!-- LOGO -->
     <div class="topbar-left">
@@ -8,21 +8,21 @@
     </div>
     
     <ul style="padding-top:22px" class="list-inline float-right mb-0">            
-        <span style="color: white;top:200px">{{ Auth::user()->name }}</span>
+        <span style="color: white;top:200px">{{ Auth::user()->name }} - {{ Auth::user()->email }}</span> 
         <li class="list-inline-item dropdown notification-list">
             <a style="color:#ffff;font-size:24px" class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="index.html#" role="button"
                aria-haspopup="false" aria-expanded="false">
             </a>
             <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
                 <!-- item-->
-                <a href="#" class="dropdown-item notify-item">
-                    <i class="mdi mdi-account"></i> <span>Perfil</span>
+                <a href="#" data-toggle="modal" data-target="#modalsenha" class="dropdown-item notify-item">
+                    <i class="fas fa-user-lock"></i> <span>Alterar Senha</span>
                 </a>
                 <!-- item-->
                 <a class="dropdown-item notify-item" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
-                     <i class="mdi mdi-logout"></i> <span>{{ __('Logout') }}</span>
+                     <i class="fas fa-sign-out-alt"></i> <span>{{ __('Logout') }}</span>
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
