@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use App\Model\Evento;
+use App\Model\EstatisticaPresenca;
 use Validator;
 use Response;
 use App\Model\Assento;
@@ -99,6 +100,11 @@ class EventoController extends Controller
         return view('verevento',compact('evento'));
     }
 
+    public function verConsumo($id){
+        $evento = Evento::find($id);
+        return view('verConsumo',compact('evento'));
+    }
+
     public function verPDF($id){
         $evento = Evento::find($id)->get();
         $convidados = DB::select('select c.id,c.nome,a.designacao from convidado c,assento a where c.id_assento=a.id AND a.id_evento = :id_evento ORDER BY designacao',['id_evento' => $id]);
@@ -177,25 +183,47 @@ class EventoController extends Controller
         return view('eventosdecorrer',compact('eventos'));
     }
 
+    public function contPessoas($convidados){
+        $estatistica = new EstatisticaPresenca;
+        foreach($convidados as $convidado){
+            if($convidado->estado=='Presente'){
+                $estatistica->presentes = ++$estatistica->presentes;
+            }else{
+                $estatistica->ausentes = ++$estatistica->ausentes;
+            }  
+        }
+        return $estatistica;
+    }
+
     public function vereventodecorrer($id){
         $convidados = DB::table('convidadoapi')
-                ->select('nome','acompanhante','assento','estado','updated_at')
+                ->select('id','nome','acompanhante','assento','estado','updated_at')
                 ->where('id_evento','=',$id)
 				->orderBy('nome')
                 ->get();
-        return view('vereventodecorrer',compact('convidados'));
+        
+        $estados = DB::table('convidadoapi')
+                ->select(
+                    DB::raw('estado as estado'),
+                    DB::raw('count(*) as quantidade'))
+                ->groupBy('estado')
+                ->where('id_evento',$id)
+                ->get();
+        //dd($data);
+        //$estatistica = $this->contPessoas($convidados);
+        return view('vereventodecorrer',compact('convidados','estados'));
     }
 	
 	//Editar o estado do convidado da WEB API
-    public function convidadoMudarEstadoAPI($idConvidado){
+    public function convidadoMudarEstadoAPI($idConvidado,$chegada){
 		if(DB::table('convidadoapi')          
             ->where('id','=',$idConvidado)
-            ->update(['estado' => 'Presente'])){
+            ->update(['estado' => 'Presente','updated_at' => $chegada])){
             $info = 'Sucesso';
         } else {
             $info = 'Erro';
         }  
-        return $info;
+        return ConvidadoResource::collection(ConvidadoAPI::where('id','=',$idConvidado)->get());
     }
 
     //Retorno da WEB API CONVIDADOS

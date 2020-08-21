@@ -35,9 +35,9 @@
                         @include('modaleditarevento')
                         
                         <h4 class="m-t-0 header-title">
-                            <button id="modalRegistar" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modalevento">
+                            <a id="modalRegistar" href="#" class="btn btn-primary" data-toggle="modal" data-target="#modalevento">
                                 <i class='fa  fa-plus-square'></i> AD EVENTO
-                            </button>
+                            </a>
                             <button style="display:none" id="modalEditar" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modaleditevento">
                             </button>
                         </h4>

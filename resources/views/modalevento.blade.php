@@ -63,7 +63,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Fechar</button>
-                        <button type="submit" name="registar" class="btn btn-primary waves-effect waves-light">Registar</button>
+                        <button type="submit" class="btn btn-primary waves-effect waves-light">Registar</button>
                     </div>
                 </form>
             </div>

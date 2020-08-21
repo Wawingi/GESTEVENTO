@@ -21,4 +21,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('verEventoDecorrerAPI/{id}','EventoController@verEventoDecorrerAPI');
 Route::get('verAssentoDecorrerAPI/{id}','EventoController@verAssentoDecorrerAPI');
 Route::get('convidados/{id}','EventoController@convidadosAPI');
-Route::get('convidadoMudarEstadoAPI/{id}','EventoController@convidadoMudarEstadoAPI');
+Route::get('convidadoMudarEstadoAPI/{id}/{chegada}','EventoController@convidadoMudarEstadoAPI');

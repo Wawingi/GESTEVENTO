@@ -17,8 +17,13 @@
                     </div>
                 </div>
             </div>
-            <br><br>
-                                            
+            <br>
+            <div class="row">
+                <div class="col-5">
+                    <div id="piechart" style="width:500px;height:250px"></div>
+                </div>
+            </div>
+            <br>                   
             <div class="row">
                 <div class="col-12">
                     <div class="card-box table-responsive">
@@ -64,15 +69,37 @@
                 </div>
             </div>
         </div>
-        <!-- end row -->
     </div>
-    <!-- end container -->
 </div>
+ 
+<script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>    
 <script>
   jQuery().ready(function(){
     $(".clickable-row").click(function(){
         window.location = $(this).data("href");
     });
   });
+  
+    google.charts.load('current',{'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart(){
+        var data = google.visualization.arrayToDataTable([
+            ['Convidado nome','Estado'],
+            @php
+                foreach($estados as $est){
+                    echo "['".$est->estado."',".$est->quantidade."],";
+                }
+            @endphp
+        ]);
+
+        var options = {
+            //title: 'Product Details',
+            is3D: false,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data,options);           
+    }
 </script>
 @stop

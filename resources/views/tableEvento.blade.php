@@ -22,6 +22,7 @@
         <td style="text-align: center">{{ $evento->hora }}</td>
         <td style="text-align: center;word-spacing: 10px">
             <a href='{{ url("/ver/{$evento->id}") }}' class="btn btn-primary btn-sm" title='Ver'><i class='fa fa-eye'></i></a>
+            <a href='{{ url("/verConsumo/{$evento->id}") }}' class="btn btn-primary btn-sm" title='Consumo'><i class='fas fa-dollar-sign'></i></a>
             <a href="#" id="{{$evento->id}}" class="pegar btn btn-warning btn-sm" title='editar'><i class='fa fa-pencil-alt'></i></a>
             <a href="#" id="{{$evento->id}}" class="eliminar btn btn-danger btn-sm" title='eliminar'><i class='fa fa-trash-alt'></i></a>
         </td>

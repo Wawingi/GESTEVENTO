@@ -19,7 +19,7 @@
         <link href="{{ asset('css/estilo.css') }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset('css/fontawesome.css') }}" rel="stylesheet" type="text/css"/>
 		<link href="{{ url('css/materialdesignicons.min.css') }}" rel="stylesheet" type="text/css"/>
-        <!--<link href="https://cdn.materialdesignicons.com/4.2.95/css/materialdesignicons.min.css"  rel="stylesheet"> -->
+        <link href="https://cdn.materialdesignicons.com/4.2.95/css/materialdesignicons.min.css"  rel="stylesheet">
         <link href="{{ asset('css/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ url('plugins/switchery/switchery.min.css') }}" rel="stylesheet" type="text/css"/>
         <link href="{{ url('plugins/jquery-circliful/css/jquery.circliful.css') }} " rel="stylesheet" type="text/css"/>    
@@ -47,6 +47,10 @@
         </div>
     </div>
 
+    <script>
+        var resizefunc = [];
+    </script>
+
     <!-- Plugins  -->
     
     <script src="{{ url('js/modernizr.min.js') }}" type="text/javascript"></script>       
@@ -54,7 +58,9 @@
     
     <!--<script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/jquery.js') }}"></script>-->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
+    <script src="{{ url('js/bootstrap.min.js') }}"></script>
+
 
     <script type="text/javascript">
         //validação para adicionar dinamicamente acompanhante de convidado

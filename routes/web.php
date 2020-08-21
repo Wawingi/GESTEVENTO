@@ -63,6 +63,12 @@ Route::get('apagarConvidado/{nome}/{id}/{pasta}','ConvidadoController@eliminar')
 Route::get('convitesGerados/{id}','ConvidadoController@convitesGeradosPage');
 Route::get('pegaConvitesGerados/{id}/{entidade}','ConvidadoController@pegaConvitesGerados');
 
+//ROTAS CONSUMO
+Route::get('verConsumo/{id}','EventoController@verConsumo');
+Route::post('inserirProduto','ConsumoController@inserirProduto');
+Route::get('pegaConsumos/{id}','ConsumoController@pegaConsumos');
+Route::get('eliminarConsumo/{id}','ConsumoController@eliminarConsumo');
+
 //ROTAS API
 Route::get('gerarapi','EventoController@getEvento');
 Route::get('vereventoAPI/{id}','EventoController@verEventoAPI');
