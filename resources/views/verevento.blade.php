@@ -88,6 +88,9 @@
 							<a href='{{ url("/eventoPDF/{$evento->id}") }}' class="btn btn-secondary">
 								<i class='fa fa-file-pdf-o'></i> Ver PDF
 							</a>
+							<a href='{{ url("convitePDF") }}' class="btn btn-success">
+								<i class='fa fa-file-pdf-o'></i> Digital Convite
+							</a>
 						@else
 							<button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#modalrandomico">
 								<i class='fa  fa-plus-square'></i> Gerar Convite

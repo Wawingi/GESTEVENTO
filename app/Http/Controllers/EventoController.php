@@ -111,6 +111,12 @@ class EventoController extends Controller
         $pdf = PDF::loadView('pdfevento',compact('evento','convidados'));
         return $pdf->setPaper('a4')->stream('pdfevento');
     }
+	
+	public function verDigitalConvite(){
+		//return view('pdfDigital');
+	    $pdf = PDF::loadView('pdfDigital');
+        return $pdf->setPaper('a4')->stream('pdfDigital');
+    }
 
     public function getEvento(){
         //$eventos = Evento::all();
@@ -209,8 +215,6 @@ class EventoController extends Controller
                 ->groupBy('estado')
                 ->where('id_evento',$id)
                 ->get();
-        //dd($data);
-        //$estatistica = $this->contPessoas($convidados);
         return view('vereventodecorrer',compact('convidados','estados'));
     }
 	
@@ -232,13 +236,27 @@ class EventoController extends Controller
     }
 
     //Retorno da WEB API EVENTO DECORRER
-    public function verEventoDecorrerAPI($id){            
-        return ConvidadoResource::collection(Evento::where('id','=',$id)->get());
+    public function verEventoDecorrerAPI($id){  
+		$ev = Evento::select('id','tipo','entidade','local','data','hora')->where('id','=',$id)->get();
+        //return ConvidadoResource::collection($ev);
+		echo $ev[0];
     }
     
     //Retorno da WEB API ASSENTOS DO EVENTO DECORRER
     public function verAssentoDecorrerAPI($id){           
         return ConvidadoResource::collection(Assento::where('id_evento','=',$id)->select('id','designacao','capacidade')->orderBy('designacao')->get());
+    }
+	
+	//Retorno da WEB API Estatistica de pessoas no evento
+	public function estatisticaConvidadosAPI($idEvento){    
+        $estados = DB::table('convidadoapi')
+                ->select(
+                    DB::raw('estado as estado'),
+                    DB::raw('count(*) as quantidade'))
+                ->groupBy('estado')
+                ->where('id_evento',$idEvento)
+                ->get();
+        echo $estados;
     }
 
 }

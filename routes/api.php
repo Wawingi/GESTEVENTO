@@ -22,3 +22,4 @@ Route::get('verEventoDecorrerAPI/{id}','EventoController@verEventoDecorrerAPI');
 Route::get('verAssentoDecorrerAPI/{id}','EventoController@verAssentoDecorrerAPI');
 Route::get('convidados/{id}','EventoController@convidadosAPI');
 Route::get('convidadoMudarEstadoAPI/{id}/{chegada}','EventoController@convidadoMudarEstadoAPI');
+Route::get('estatisticaConvidadosAPI/{id}','EventoController@estatisticaConvidadosAPI');

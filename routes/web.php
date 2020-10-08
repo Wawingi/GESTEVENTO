@@ -4,12 +4,13 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('listarUtilizadores', 'UtilizadorController@listarutilizador');
-Route::post('registarutilizador', 'UtilizadorController@registarutilizador');
-Route::post('editarutilizador', 'UtilizadorController@editarutilizador');
-Route::post('alterarSenhaUtilizador', 'UtilizadorController@alterarSenhaUtilizador');
-Route::get('eliminarUtilizador/{id}', 'UtilizadorController@eliminarUtilizador');
-
+Route::middleware(['auth'])->group(function(){
+	Route::get('listarUtilizadores', 'UtilizadorController@listarutilizador');
+	Route::post('registarutilizador', 'UtilizadorController@registarutilizador');
+	Route::post('editarutilizador', 'UtilizadorController@editarutilizador');
+	Route::post('alterarSenhaUtilizador', 'UtilizadorController@alterarSenhaUtilizador');
+	Route::get('eliminarUtilizador/{id}', 'UtilizadorController@eliminarUtilizador');
+});
 
 Route::get('/inserir',function(){
     return view('inserirevento');  
@@ -19,15 +20,18 @@ Route::get('/pdf',function(){
     return view('pdfevento');
 });
 
-Route::get('/listar','EventoController@listar');
-Route::post('/inserir','EventoController@inserir');
-Route::get('/editar/{id}','EventoController@editar');
-Route::post('/actualizar/{id}','EventoController@actualizar');
-Route::get('/eliminar/{id}','EventoController@eliminar');
-Route::get('/ver/{id}','EventoController@ver');
-Route::get('/eventoPDF/{id}','EventoController@verPDF');
-Route::get('eventosdecorrer','EventoController@eventosdecorrer');
-Route::get('vereventodecorrer/{id}','EventoController@vereventodecorrer');
+Route::middleware(['auth'])->group(function(){
+	Route::get('/listar','EventoController@listar');
+	Route::post('/inserir','EventoController@inserir');
+	Route::get('/editar/{id}','EventoController@editar');
+	Route::post('/actualizar/{id}','EventoController@actualizar');
+	Route::get('/eliminar/{id}','EventoController@eliminar');
+	Route::get('/ver/{id}','EventoController@ver');
+	Route::get('/eventoPDF/{id}','EventoController@verPDF');
+	Route::get('convitePDF','EventoController@verDigitalConvite');
+	Route::get('eventosdecorrer','EventoController@eventosdecorrer');
+	Route::get('vereventodecorrer/{id}','EventoController@vereventodecorrer');
+});
 
 //Route::resource('evento','EventoController');
 Route::get('inserir',function(){
